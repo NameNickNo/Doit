@@ -1,9 +1,21 @@
 package org.DoIT.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class User {
 
+    @NotBlank(message = "Name should be required")
+    @Size(min = 2, max = 30, message = "Surname should be normal size")
     private String name;
+
+    @NotBlank(message = "Surname should be required")
+    @Size(min = 2, max = 30, message = "Surname should be normal size")
     private String surname;
+
+    @NotBlank(message = "Email should be required")
+    @Email
     private String email;
 
     public User(String name, String surname, String email) {

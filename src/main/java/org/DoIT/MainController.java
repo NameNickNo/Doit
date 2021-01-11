@@ -3,8 +3,10 @@ package org.DoIT;
 import org.DoIT.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +35,17 @@ public class MainController {
         return "users-list";
     }
 
-    @GetMapping("/user/new")
-    public String createUser() {
+    @GetMapping("/users/new")
+    public String createUser(Model model) {
+        model.addAttribute("user", new User());
         return "sign-up";
     }
 
-    @PostMapping("/user/new")
-    public String signUp(User user) {
+    @PostMapping("/users/new")
+    public String signUp(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "sign-up";
+        }
         users.add(user);
         return "redirect:/users";
     }
