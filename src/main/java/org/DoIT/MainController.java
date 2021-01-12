@@ -1,24 +1,27 @@
 package org.DoIT;
 
+import org.DoIT.dao.UserDao;
 import org.DoIT.model.User;
+import org.DoIT.util.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class MainController {
-    List<User> users = new ArrayList<>();
 
-    @GetMapping("/get")
-    public String view(@RequestParam(value = "name", required = false, defaultValue = "Stranger") String name, Model model) {
-        model.addAttribute("message", "Hello " + name);
-        return "index";
+    private final UserDao userDao;
+    private final UserValidator userValidator;
+
+    public MainController(UserDao userDao, UserValidator userValidator) {
+        this.userDao = userDao;
+        this.userValidator = userValidator;
     }
 
     @GetMapping("/raw")
@@ -29,7 +32,8 @@ public class MainController {
     }
 
     @GetMapping("/users")
-    public String getUsers(Model model) {
+    public String getUsers(Model model) throws SQLException {
+        List<User> users = userDao.getAll();
 
         model.addAttribute("users", users);
         return "users-list";
@@ -42,11 +46,13 @@ public class MainController {
     }
 
     @PostMapping("/users/new")
-    public String signUp(@Valid User user, BindingResult bindingResult) {
+    public String signUp(@Valid User user, BindingResult bindingResult) throws SQLException {
+        userValidator.validate(user, bindingResult);
+
         if (bindingResult.hasErrors()) {
             return "sign-up";
         }
-        users.add(user);
+        userDao.createUser(user);
         return "redirect:/users";
     }
 }
