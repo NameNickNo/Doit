@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserDao {
+public class UserDaoJdbcApi implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
 
-    public UserDao(JdbcTemplate jdbcTemplate) {
+    public UserDaoJdbcApi(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
