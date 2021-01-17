@@ -1,7 +1,6 @@
 package org.DoIT;
 
 import org.DoIT.dao.UserDao;
-import org.DoIT.dao.UserDaoJdbcTemplate;
 import org.DoIT.model.User;
 import org.DoIT.util.UserValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +19,7 @@ public class MainController {
     private final UserDao userDao;
     private final UserValidator userValidator;
 
-    public MainController(@Qualifier("userDaoJdbcTemplate") UserDao userDao, UserValidator userValidator) {
+    public MainController(@Qualifier("userDaoHibernate") UserDao userDao, UserValidator userValidator) {
         this.userDao = userDao;
         this.userValidator = userValidator;
     }
