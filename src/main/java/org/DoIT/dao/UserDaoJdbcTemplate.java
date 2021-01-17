@@ -1,7 +1,6 @@
 package org.DoIT.dao;
 
 import org.DoIT.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -9,12 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserDaoJdbcApi implements UserDao {
+public class UserDaoJdbcTemplate implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
 
-    public UserDaoJdbcApi(JdbcTemplate jdbcTemplate) {
+    public UserDaoJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
