@@ -32,7 +32,7 @@ public class MainController {
     }
 
     @GetMapping("/users")
-    public String getUsers(Model model) throws SQLException {
+    public String getUsers(Model model) {
         List<User> users = userDao.getAll();
 
         model.addAttribute("users", users);
@@ -46,7 +46,7 @@ public class MainController {
     }
 
     @PostMapping("/users/new")
-    public String signUp(@Valid User user, BindingResult bindingResult) throws SQLException {
+    public String signUp(@Valid User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
