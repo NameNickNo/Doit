@@ -12,7 +12,7 @@ public class UserValidator implements Validator {
 
     private final UserDao userDao;
 
-    public UserValidator(@Qualifier("userDaoHibernate") UserDao userDao) {
+    public UserValidator(@Qualifier("jpaUserDao") UserDao userDao) {
         this.userDao = userDao;
     }
 

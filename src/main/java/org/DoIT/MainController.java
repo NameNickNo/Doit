@@ -19,7 +19,7 @@ public class MainController {
     private final UserDao userDao;
     private final UserValidator userValidator;
 
-    public MainController(@Qualifier("userDaoHibernate") UserDao userDao, UserValidator userValidator) {
+    public MainController(@Qualifier("jpaUserDao") UserDao userDao, UserValidator userValidator) {
         this.userDao = userDao;
         this.userValidator = userValidator;
     }
