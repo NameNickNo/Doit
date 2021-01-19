@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class JpaUserDao implements UserDao {
 
-    @PersistenceContext(unitName = "emf")
+    @PersistenceContext(unitName = "entityManagerFactory")
     private EntityManager entityManager;
 
     @Override

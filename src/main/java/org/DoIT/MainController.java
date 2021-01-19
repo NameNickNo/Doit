@@ -1,9 +1,8 @@
 package org.DoIT;
 
-import org.DoIT.dao.UserDao;
 import org.DoIT.model.User;
+import org.DoIT.service.UserService;
 import org.DoIT.util.UserValidator;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,11 +15,11 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private final UserDao userDao;
+    private final UserService userService;
     private final UserValidator userValidator;
 
-    public MainController(@Qualifier("jpaUserDao") UserDao userDao, UserValidator userValidator) {
-        this.userDao = userDao;
+    public MainController(UserService userService, UserValidator userValidator) {
+        this.userService = userService;
         this.userValidator = userValidator;
     }
 
@@ -33,7 +32,7 @@ public class MainController {
 
     @GetMapping("/users")
     public String getUsers(Model model) {
-        List<User> users = userDao.getAll();
+        List<User> users = userService.getAll();
 
         model.addAttribute("users", users);
         return "users-list";
@@ -52,7 +51,7 @@ public class MainController {
         if (bindingResult.hasErrors()) {
             return "sign-up";
         }
-        userDao.createUser(user);
+        userService.save(user);
         return "redirect:/users";
     }
 }
