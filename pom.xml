@@ -11,6 +11,7 @@
 
     <properties>
         <spring-version>5.2.12.RELEASE</spring-version>
+        <aspectj-version>1.9.6</aspectj-version>
     </properties>
 
     <dependencies>
@@ -56,6 +57,25 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj-version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.data</groupId>

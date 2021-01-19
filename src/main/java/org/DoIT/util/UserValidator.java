@@ -1,7 +1,7 @@
 package org.DoIT.util;
 
 import org.DoIT.model.User;
-import org.DoIT.service.UserServiceImpl;
+import org.DoIT.service.UserService;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -9,9 +9,9 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
-    public UserValidator(UserServiceImpl userService) {
+    public UserValidator(UserService userService) {
         this.userService = userService;
     }
 
