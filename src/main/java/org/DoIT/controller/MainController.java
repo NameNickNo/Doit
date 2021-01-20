@@ -1,4 +1,4 @@
-package org.DoIT;
+package org.DoIT.controller;
 
 import org.DoIT.model.User;
 import org.DoIT.service.UserService;

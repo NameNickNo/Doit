@@ -20,9 +20,9 @@ public class UserDaoJdbcApi implements UserDao {
         try (InputStream in = UserDao.class.getClassLoader().getResourceAsStream("persistence.properties")) {
             Properties properties = new Properties();
             properties.load(in);
-            URL = properties.getProperty("url");
-            USERNAME = properties.getProperty("username");
-            PASSWORD = properties.getProperty("password");
+            URL = properties.getProperty("jdbc.url");
+            USERNAME = properties.getProperty("jdbc.username");
+            PASSWORD = properties.getProperty("jdbc.password");
 
         } catch (IOException e) {
             e.printStackTrace();
