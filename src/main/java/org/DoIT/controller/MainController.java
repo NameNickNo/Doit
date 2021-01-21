@@ -16,11 +16,11 @@ import java.util.List;
 public class MainController {
 
     private final UserService userService;
-    private final UserValidator userValidator;
+//    private final UserValidator userValidator;
 
-    public MainController(UserService userService, UserValidator userValidator) {
+    public MainController(UserService userService/*, UserValidator userValidator */) {
         this.userService = userService;
-        this.userValidator = userValidator;
+//        this.userValidator = userValidator;
     }
 
     @GetMapping("/raw")
@@ -38,20 +38,20 @@ public class MainController {
         return "users-list";
     }
 
-    @GetMapping("/users/new")
-    public String createUser(Model model) {
-        model.addAttribute("user", new User());
-        return "sign-up";
-    }
-
-    @PostMapping("/users/new")
-    public String signUp(@Valid User user, BindingResult bindingResult) {
-        userValidator.validate(user, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "sign-up";
-        }
-        userService.save(user);
-        return "redirect:/users";
-    }
+//    @GetMapping("/users/new")
+//    public String createUser(Model model) {
+//        model.addAttribute("user", new User());
+//        return "/auth/sign-up";
+//    }
+//
+//    @PostMapping("/users/new")
+//    public String signUp(@Valid User user, BindingResult bindingResult) {
+//        userValidator.validate(user, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "/auth/sign-up";
+//        }
+//        userService.save(user);
+//        return "redirect:/users";
+//    }
 }

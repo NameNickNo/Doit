@@ -13,7 +13,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     @NotBlank(message = "Name should be required")
     @Size(min = 2, max = 30, message = "Surname should be normal size")
     private String name;
@@ -26,6 +25,8 @@ public class User {
     @Email
     private String email;
 
+    @Size(min = 3, max = 50, message = "Not correct password")
+    private String password;
 
     public User() {
     }
@@ -59,6 +60,14 @@ public class User {
     }
 
     public void setEmail(String email) {
+
         this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
