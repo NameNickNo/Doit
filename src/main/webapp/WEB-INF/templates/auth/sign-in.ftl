@@ -14,8 +14,8 @@
     <input type="submit">
     </form>
 
-<#--    <#if error??>-->
-<#--        <p>Bad credentials</p>-->
-<#--    </#if>-->
+    <#if error??>
+        <p>Bad credentials</p>
+    </#if>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class User {
     @Email
     private String email;
 
-    @Size(min = 3, max = 50, message = "Not correct password")
+    @Size(min = 3, message = "Not correct password")
     private String password;
 
     public User() {

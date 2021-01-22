@@ -6,10 +6,7 @@ import org.DoIT.util.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +19,11 @@ public class AuthController {
     public AuthController(UserValidator userValidator, UserService userService) {
         this.userValidator = userValidator;
         this.userService = userService;
+    }
+
+    @GetMapping("/")
+    public String startPage() {
+        return "redirect:/users";
     }
 
     @GetMapping("/sign_up")
@@ -41,7 +43,10 @@ public class AuthController {
     }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(@RequestParam(name = "error", required = false) Boolean error, Model model) {
+        if (Boolean.TRUE.equals(error)) {
+            model.addAttribute("error", true);
+        }
         return "auth/sign-in";
     }
 

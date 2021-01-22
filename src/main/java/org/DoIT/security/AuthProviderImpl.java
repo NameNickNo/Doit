@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ import java.util.List;
 public class AuthProviderImpl implements AuthenticationProvider {
 
     private final UserRepository userRepository;
+//    private final PasswordEncoder passwordEncoder;
 
-    public AuthProviderImpl(UserRepository userRepository) {
+    public AuthProviderImpl(UserRepository userRepository/*, PasswordEncoder passwordEncoder*/) {
         this.userRepository = userRepository;
+//        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -31,6 +34,7 @@ public class AuthProviderImpl implements AuthenticationProvider {
             throw new UsernameNotFoundException("User not found");
         }
         String password = authentication.getCredentials().toString();
+        //!passwordEncoder.matches(password, user.getPassword())
         if (!password.equals(user.getPassword())) {
             throw new BadCredentialsException("Bad credentials");
         }

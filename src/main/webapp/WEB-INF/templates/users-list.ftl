@@ -15,7 +15,7 @@
         <p> No users </p>
     </#if>
 
-
+    <a href="/logout">Logout</a>
 
 </body>
 </html>
